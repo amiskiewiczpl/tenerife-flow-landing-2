@@ -1,36 +1,42 @@
-import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
-import HeroSection from './components/sections/HeroSection';
-import ProblemSection from './components/sections/ProblemSection';
-import AudienceSection from './components/sections/AudienceSection';
-import PackagesSection from './components/sections/PackagesSection';
-import HowItWorksSection from './components/sections/HowItWorksSection';
-import WhyUsSection from './components/sections/WhyUsSection';
-import ScenariosSection from './components/sections/ScenariosSection';
-import AboutSection from './components/sections/AboutSection';
-import FaqSection from './components/sections/FaqSection';
-import ContactSection from './components/sections/ContactSection';
-import './App.css';
+import { AudienceSection } from './premium/sections/AudienceSection'
+import { ContactSection } from './premium/sections/ContactSection'
+import { CuratedCategoriesSection } from './premium/sections/CuratedCategoriesSection'
+import { ExperienceStorySection } from './premium/sections/ExperienceStorySection'
+import { FaqSection } from './premium/sections/FaqSection'
+import { Footer } from './premium/sections/Footer'
+import { Header } from './premium/sections/Header'
+import { HeroSection } from './premium/sections/HeroSection'
+import { LifestyleSection } from './premium/sections/LifestyleSection'
+import { PackagesSection } from './premium/sections/PackagesSection'
+import { ProcessSection } from './premium/sections/ProcessSection'
+import { ScenariosSection } from './premium/sections/ScenariosSection'
+import { ServicesSection } from './premium/sections/ServicesSection'
+import { TrustBarSection } from './premium/sections/TrustBarSection'
+import { WhyUsSection } from './premium/sections/WhyUsSection'
+import './premium/styles.css'
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="page-shell">
       <Header />
-      <main className="page-shell">
+      <main>
         <HeroSection />
-        <ProblemSection />
+        <TrustBarSection />
+        <LifestyleSection />
+        <ExperienceStorySection />
         <AudienceSection />
+        <ServicesSection />
+        <CuratedCategoriesSection />
+        <ProcessSection />
         <PackagesSection />
-        <HowItWorksSection />
         <WhyUsSection />
         <ScenariosSection />
-        <AboutSection />
         <FaqSection />
         <ContactSection />
       </main>
       <Footer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
