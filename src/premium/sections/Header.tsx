@@ -1,10 +1,13 @@
 import { navigation } from '../data/content'
 
+const homeHref = import.meta.env.BASE_URL
+const contactHref = `${import.meta.env.BASE_URL}#contact`
+
 export function Header() {
   return (
     <header className="site-header">
       <div className="container header-inner">
-        <a className="brand" href="./index.html">
+        <a className="brand" href={homeHref}>
           <span className="brand-mark">TF</span>
           <span className="brand-copy">
             <strong>Tenerife Flow</strong>
@@ -20,7 +23,7 @@ export function Header() {
           ))}
         </nav>
 
-        <a className="button button-primary header-cta" href="./index.html#contact">
+        <a className="button button-primary header-cta" href={contactHref}>
           Umów rozmowę
         </a>
       </div>

@@ -22,24 +22,26 @@ export function PackagesSection() {
               ) : null}
 
               <div className="package-header">
-                <div>
+                <div className="package-heading-block">
                   <span className="package-label">{item.label}</span>
                   <h3>{item.name}</h3>
                 </div>
                 <span className="package-price">{item.price}</span>
               </div>
 
-              <p className="package-forwho">{item.forWho}</p>
-              <p className="package-description">{item.description}</p>
+              <div className="package-copy-block">
+                <p className="package-forwho">{item.forWho}</p>
+                <p className="package-description">{item.description}</p>
 
-              <ul className="package-benefits package-benefits-list">
-                {item.benefits.map((benefit) => (
-                  <li key={benefit}>{benefit}</li>
-                ))}
-              </ul>
+                <ul className="package-benefits package-benefits-list">
+                  {item.benefits.map((benefit) => (
+                    <li key={benefit}>{benefit}</li>
+                  ))}
+                </ul>
+              </div>
 
               <a
-                className={`button ${item.featured ? 'button-primary' : 'button-secondary'}`}
+                className={`button package-cta ${item.featured ? 'button-primary' : 'button-secondary'}`}
                 href="#contact"
               >
                 {item.cta}

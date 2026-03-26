@@ -1,3 +1,4 @@
+import { AboutSection } from './premium/sections/AboutSection'
 import { AudienceSection } from './premium/sections/AudienceSection'
 import { ContactSection } from './premium/sections/ContactSection'
 import { CuratedCategoriesSection } from './premium/sections/CuratedCategoriesSection'
@@ -11,6 +12,7 @@ import { PackagesSection } from './premium/sections/PackagesSection'
 import { ProcessSection } from './premium/sections/ProcessSection'
 import { ScenariosSection } from './premium/sections/ScenariosSection'
 import { ServicesSection } from './premium/sections/ServicesSection'
+import { SocialProofSection } from './premium/sections/SocialProofSection'
 import { TrustBarSection } from './premium/sections/TrustBarSection'
 import { WhyUsSection } from './premium/sections/WhyUsSection'
 import './premium/styles.css'
@@ -25,9 +27,11 @@ function App() {
         <LifestyleSection />
         <ExperienceStorySection />
         <AudienceSection />
+        <AboutSection />
         <ServicesSection />
         <CuratedCategoriesSection />
         <ProcessSection />
+        <SocialProofSection />
         <PackagesSection />
         <WhyUsSection />
         <ScenariosSection />

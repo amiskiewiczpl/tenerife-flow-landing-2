@@ -1,14 +1,23 @@
+const baseUrl = import.meta.env.BASE_URL
+const image = (file: string) => `${baseUrl}images/${file}`
+
 export const navigation = [
-  { label: 'Start', href: './index.html' },
-  { label: 'Doświadczenia', href: './experiences.html' },
-  { label: 'Partnerzy', href: './partners.html' },
-  { label: 'Kontakt', href: './index.html#contact' },
+  { label: 'Start', href: baseUrl },
+  { label: 'Doświadczenia', href: `${baseUrl}experiences.html` },
+  { label: 'Partnerzy', href: `${baseUrl}partners.html` },
+  { label: 'Kontakt', href: `${baseUrl}#contact` },
 ]
 
 export const heroPoints = [
   'Indywidualny plan pobytu',
   'Lokalne wsparcie na miejscu',
   'Spokój i oszczędność czasu',
+]
+
+export const heroEditorialNotes = [
+  'private villa rhythm',
+  'curated local access',
+  'quiet luxury support',
 ]
 
 export const trustBarItems = [
@@ -52,6 +61,32 @@ export const audienceCards = [
   },
 ]
 
+export const aboutHighlights = [
+  {
+    title: 'Pracujemy jak concierge, nie jak katalog ofert',
+    text: 'Zaczynamy od rozmowy o stylu pobytu, priorytetach i poziomie wygody, a dopiero potem dobieramy konkretne rozwiązania.',
+  },
+  {
+    title: 'Działamy selektywnie i spokojnie',
+    text: 'Nie zasypujemy klienta setką opcji. Filtrujemy wybory, porządkujemy decyzje i prowadzimy cały proces w czytelny sposób.',
+  },
+  {
+    title: 'Budujemy zaufanie przez jakość obsługi',
+    text: 'Łączymy lokalną orientację, estetykę rekomendacji i realne wsparcie człowieka zamiast anonimowej infolinii.',
+  },
+]
+
+export const aboutComparison = [
+  {
+    label: 'Zwykłe biuro podróży',
+    text: 'Sprzedaje gotowy pakiet i uniwersalny scenariusz pobytu.',
+  },
+  {
+    label: 'Tenerife Flow',
+    text: 'Projektuje pobyt pod rytm klienta, jego potrzeby i oczekiwany standard doświadczenia.',
+  },
+]
+
 export const serviceCards = [
   {
     title: 'Plan podróży szyty na miarę',
@@ -77,6 +112,30 @@ export const processSteps = [
   'Wsparcie przed wyjazdem i na miejscu',
 ]
 
+export const socialProofEntries = [
+  {
+    name: 'Miejsce na opinię klienta',
+    meta: 'romantyczny pobyt, 6 dni',
+    quote:
+      'Tu możesz wstawić finalną opinię klienta. Układ jest gotowy na krótką, konkretną rekomendację z naciskiem na spokój organizacji i jakość pobytu.',
+    image: image('sunset.svg'),
+  },
+  {
+    name: 'Miejsce na opinię klienta',
+    meta: 'long stay / relokacja',
+    quote:
+      'Sekcja jest przygotowana pod prawdziwy social proof: krótka historia, efekt końcowy i estetyczne zdjęcie z pobytu albo doświadczenia.',
+    image: image('rest.svg'),
+  },
+  {
+    name: 'Miejsce na opinię klienta',
+    meta: 'signature concierge',
+    quote:
+      'Ten placeholder można później podmienić na realne słowa klienta bez zmiany layoutu. Zachowuje premium feel i nie wygląda jak przypadkowy slider.',
+    image: image('dining.svg'),
+  },
+]
+
 export const packageCards = [
   {
     name: 'Essential',
@@ -99,9 +158,9 @@ export const packageCards = [
     name: 'Signature',
     label: 'Najczęściej wybierany',
     forWho:
-      'Dla osób, które chcą mieć plan, koordynację i spokojne wsparcie bez wchodzenia w pełny custom concierge.',
+      'Dla osób, które chcą mieć plan, koordynację i spokojne wsparcie bez wchodzenia w pełny concierge.',
     description:
-      'Najlepszy balans między wygodą, jakością i opieką. Idealny, jeśli chcesz poczuć realną ulgę organizacyjną.',
+      'Najlepszy balans między wygodą, jakością i opieką. To pakiet dla osób, które chcą realnie odciążyć organizację wyjazdu.',
     price: 'wycena indywidualna',
     benefits: [
       'plan pobytu szyty na miarę',
@@ -153,19 +212,19 @@ export const lifestyleCards = [
     title: 'Poranki w prywatnej willi, gdzie wszystko zwalnia do właściwego tempa',
     copy:
       'Światło, cisza, dobra architektura i plan dnia, który nie zaczyna się od szukania opcji, tylko od gotowego spokoju.',
-    image: '/tenerife-flow-landing-2/images/rest.svg',
+    image: image('rest.svg'),
   },
   {
-    title: 'Wieczory, które mają atmosferę, nie tylko rezerwację w kalendarzu',
+    title: 'Wieczory, które mają atmosferę, a nie tylko rezerwację w kalendarzu',
     copy:
       'Zachód słońca, odpowiedni stolik, dobrze dobrane miejsce i poczucie, że ktoś wcześniej zadbał o każdy detal.',
-    image: '/tenerife-flow-landing-2/images/sunset.svg',
+    image: image('sunset.svg'),
   },
   {
-    title: 'Lokalne doświadczenia wybrane z wyczuciem, a nie z listy „must see”',
+    title: 'Lokalne doświadczenia wybrane z wyczuciem, a nie z listy "must see"',
     copy:
       'Ukryte adresy, spokojne roadtripy i rekomendacje, które pasują do Twojego stylu zamiast kopiować internetowe schematy.',
-    image: '/tenerife-flow-landing-2/images/hidden-spots.svg',
+    image: image('hidden-spots.svg'),
   },
 ]
 
@@ -175,7 +234,7 @@ export const visualStories = [
     title: 'Pobyt, w którym ocean i prywatność stają się częścią codziennego rytmu.',
     text:
       'Zamiast przeładowanego planu dostajesz przestrzeń, selekcję i spokojny scenariusz dnia. To styl wypoczynku, który czuć od pierwszego poranka.',
-    image: '/tenerife-flow-landing-2/images/roadtrip.svg',
+    image: image('roadtrip.svg'),
     align: 'left',
   },
   {
@@ -183,15 +242,15 @@ export const visualStories = [
     title: 'Miejsca z klasą, które nie potrzebują głośnej oprawy, żeby robić wrażenie.',
     text:
       'Dobieramy noclegi, kolacje i aktywności tak, by cały pobyt był estetycznie spójny, wygodny i naprawdę dopasowany do Ciebie.',
-    image: '/tenerife-flow-landing-2/images/dining.svg',
+    image: image('dining.svg'),
     align: 'right',
   },
   {
     eyebrow: 'Local moments',
     title: 'Lokalne doświadczenia, które wyglądają naturalnie, a nie jak odhaczanie atrakcji.',
     text:
-      'Roadtrip, spokojny lunch, zachód słońca w dobrym miejscu, aktywność premium bez pośpiechu. Kupujesz klimat życia, nie listę punktów.',
-    image: '/tenerife-flow-landing-2/images/premium-activity.svg',
+      'Roadtrip, spokojny lunch, zachód słońca w dobrym miejscu i aktywność premium bez pośpiechu. Kupujesz klimat życia, nie listę punktów.',
+    image: image('premium-activity.svg'),
     align: 'left',
   },
 ]
@@ -231,62 +290,96 @@ export const curatedCategories = [
   },
 ]
 
+export const curatedSpotlights = [
+  {
+    title: 'Ocean, światło i spokojny rytm dnia',
+    copy:
+      'Katamaran, whale watching i wyjścia na wodę dobieramy tak, by były częścią dopracowanego pobytu, a nie osobną atrakcją bez kontekstu.',
+    image: image('sunset.svg'),
+    tag: 'Ocean i rejsy',
+  },
+  {
+    title: 'Teide, natura i trasy z wyczuciem komfortu',
+    copy:
+      'Curated days around Teide budujemy z myślą o widoku, tempie i energii klienta, bez przypadkowej logistyki i przeciążenia planem.',
+    image: image('roadtrip.svg'),
+    tag: 'Teide i natura',
+  },
+  {
+    title: 'Smaki wyspy i lokalne adresy z charakterem',
+    copy:
+      'Guachinche, spokojne lunche i kolacje dobieramy tak, żeby wzmacniały klimat pobytu i budowały prawdziwe poczucie miejsca.',
+    image: image('dining.svg'),
+    tag: 'Smaki wyspy',
+  },
+]
+
+export const curatedExperienceExamples = [
+  'katamaran o spokojniejszym, bardziej prywatnym charakterze',
+  'dzień wokół Teide z dopracowaną trasą i tempem',
+  'wybrane guachinche i lokalne stoły warte zaufania',
+  'tenis i padel wpisane w rytm pobytu',
+  'wellness i regeneracja bez przypadkowych adresów',
+  'fizjoterapia i mobility support na miejscu',
+  'gokarty i aktywności z lepszą logistyką',
+]
+
 export const curatedExperiences = [
   {
     title: 'Katamaran i spokojne wyjście na ocean',
     description:
       'Doświadczenie dla osób, które szukają jakościowego czasu na wodzie, a nie zatłoczonej atrakcji.',
     tag: 'Ocean i rejsy',
-    image: '/tenerife-flow-landing-2/images/sunset.svg',
+    image: image('sunset.svg'),
   },
   {
     title: 'Padel, tenis i aktywność w dobrym rytmie',
     description:
       'Dobieramy miejsca i partnerów tak, by aktywność była częścią dobrze zaprojektowanego pobytu.',
     tag: 'Sport i aktywność',
-    image: '/tenerife-flow-landing-2/images/premium-activity.svg',
+    image: image('premium-activity.svg'),
   },
   {
     title: 'Teide i curated nature days',
     description:
       'Wyprawy planowane z wyczuciem komfortu, warunków i jakości doświadczenia zamiast przypadkowego researchu.',
     tag: 'Teide i natura',
-    image: '/tenerife-flow-landing-2/images/roadtrip.svg',
+    image: image('roadtrip.svg'),
   },
   {
     title: 'Guachinche i lokalne smaki wyspy',
     description:
       'Wybrane adresy, które dają prawdziwy klimat miejsca bez przepychania Cię przez przypadkowe listy.',
     tag: 'Smaki wyspy',
-    image: '/tenerife-flow-landing-2/images/dining.svg',
+    image: image('dining.svg'),
   },
   {
     title: 'Fizjoterapia, wellness i regeneracja',
     description:
       'Wspieramy relaks, mobilność i powrót do energii przez sprawdzone usługi premium i spokojną organizację.',
     tag: 'Wellness i regeneracja',
-    image: '/tenerife-flow-landing-2/images/rest.svg',
+    image: image('rest.svg'),
   },
   {
     title: 'Roadtripy prowadzone przez widok i atmosferę',
     description:
-      'Trasy i postoje układane tak, by dzień miał klimat, płynność i odpowiedni poziom estetyki.',
+      'Trasy i postoje układamy tak, by dzień miał klimat, płynność i odpowiedni poziom estetyki.',
     tag: 'Roadtripy',
-    image: '/tenerife-flow-landing-2/images/hidden-spots.svg',
+    image: image('hidden-spots.svg'),
   },
   {
     title: 'Whale watching bez turystycznego chaosu',
     description:
-      'Pomagamy wybrać doświadczenia, które zostają w pamięci dzięki jakości i spokojowi, nie przez tłok.',
+      'Pomagamy wybrać doświadczenia, które zostają w pamięci dzięki jakości i spokojowi, a nie przez tłok.',
     tag: 'Ocean i rejsy',
-    image: '/tenerife-flow-landing-2/images/sunset.svg',
+    image: image('sunset.svg'),
   },
   {
     title: 'Relocation support i long stay concierge',
     description:
-      'Pomoc przy dłuższym pobycie, logistyce i pierwszych decyzjach, jeśli Teneryfa ma być czymś więcej niż krótkim urlopem.',
+      'Pomagamy przy dłuższym pobycie, logistyce i pierwszych decyzjach, jeśli Teneryfa ma być czymś więcej niż krótkim urlopem.',
     tag: 'Relokacja i long stay',
-    image: '/tenerife-flow-landing-2/images/rest.svg',
+    image: image('rest.svg'),
   },
 ]
 
@@ -308,7 +401,7 @@ export const featuredPartners = [
     description:
       'Partner dla klientów, którzy chcą jakościowego czasu na wodzie, spokojnej organizacji i bardziej prywatnego charakteru doświadczenia.',
     link: 'https://example.com/ocean-circle',
-    image: '/tenerife-flow-landing-2/images/sunset.svg',
+    image: image('sunset.svg'),
   },
   {
     name: 'Move Well Studio',
@@ -316,7 +409,7 @@ export const featuredPartners = [
     description:
       'Wsparcie dla osób stawiających na regenerację, mobilność i dobre samopoczucie jako część luksusowego pobytu.',
     link: 'https://example.com/move-well',
-    image: '/tenerife-flow-landing-2/images/rest.svg',
+    image: image('rest.svg'),
   },
   {
     name: 'Relocate Tenerife',
@@ -324,7 +417,7 @@ export const featuredPartners = [
     description:
       'Sprawdzone wsparcie dla klientów planujących dłuższy pobyt, zmianę rytmu życia lub bardziej uporządkowany start na miejscu.',
     link: 'https://example.com/relocate-tenerife',
-    image: '/tenerife-flow-landing-2/images/roadtrip.svg',
+    image: image('roadtrip.svg'),
   },
 ]
 
@@ -369,7 +462,7 @@ export const faqs = [
   {
     question: 'Czy działacie tylko na Teneryfie?',
     answer:
-      'Teneryfa jest głównym kierunkiem i tu skupiamy lokalną wiedzę, sieć kontaktów oraz styl usługi.',
+      'Tak. Teneryfa jest naszym głównym kierunkiem i to tutaj skupiamy lokalną wiedzę, kontakty i styl usługi.',
   },
   {
     question: 'Czy pomagacie przy dłuższym pobycie?',

@@ -13,8 +13,8 @@ export function PartnersPage() {
             <h1>Sprawdzona sieć lokalnych partnerów, którym można zaufać</h1>
             <p>
               Współpracujemy z partnerami, którzy wspierają jakość pobytu, a nie
-              obniżają ją przypadkową obsługą. To sieć budowana pod concierge, nie pod
-              masową sprzedaż.
+              obniżają jej przypadkową obsługą. To sieć budowana pod concierge, nie
+              pod masową sprzedaż.
             </p>
           </div>
         </section>
@@ -26,9 +26,9 @@ export function PartnersPage() {
             </div>
             <div>
               <p>
-                Dzięki lokalnym relacjom możemy składać pobyty z usług, miejsc i ludzi,
-                którzy rozumieją standard obsługi premium. To ważne przy aktywnościach,
-                transporcie, relokacji i opiece na miejscu.
+                Dzięki lokalnym relacjom możemy składać pobyty z usług, miejsc i
+                ludzi, którzy rozumieją standard obsługi premium. To ważne przy
+                aktywnościach, transporcie, relokacji i opiece na miejscu.
               </p>
               <ul className="pill-list">
                 {partnerTypes.map((item) => (

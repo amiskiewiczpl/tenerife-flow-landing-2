@@ -1,6 +1,8 @@
+import { curatedExperiences } from '../data/content'
 import { Footer } from '../sections/Footer'
 import { Header } from '../sections/Header'
-import { curatedExperiences } from '../data/content'
+
+const contactHref = `${import.meta.env.BASE_URL}#contact`
 
 export function ExperiencesPage() {
   return (
@@ -40,10 +42,10 @@ export function ExperiencesPage() {
               <span className="eyebrow">Konsultacja</span>
               <h2>Powiedz nam, jaki klimat pobytu chcesz zbudować.</h2>
               <p>
-                Dobierzemy doświadczenia tak, żeby wspierały cały pobyt, zamiast go
-                rozbijać na przypadkowe punkty.
+                Dobierzemy doświadczenia tak, żeby wspierały cały pobyt, zamiast
+                rozbijać go na przypadkowe punkty.
               </p>
-              <a className="button button-primary" href="./index.html#contact">
+              <a className="button button-primary" href={contactHref}>
                 Umów konsultację
               </a>
             </div>
