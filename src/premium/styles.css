@@ -247,6 +247,45 @@ h3 {
   gap: 12px;
 }
 
+.locale-switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.locale-switcher-mobile {
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.locale-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(184, 154, 114, 0.14);
+  box-shadow: var(--shadow-card);
+  font-size: 1.15rem;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.locale-flag:hover {
+  transform: translateY(-1px);
+  border-color: rgba(184, 154, 114, 0.32);
+}
+
+.locale-flag-active {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(243, 233, 220, 0.86));
+  border-color: rgba(184, 154, 114, 0.34);
+}
+
 .header-cta {
   min-width: 186px;
 }
