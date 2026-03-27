@@ -2,6 +2,8 @@ import { featuredPartners, partnerTypes, partnersLogos } from '../data/content'
 import { Footer } from '../sections/Footer'
 import { Header } from '../sections/Header'
 
+const contactHref = `${import.meta.env.BASE_URL}contact.html`
+
 export function PartnersPage() {
   return (
     <div className="page-shell">
@@ -56,13 +58,8 @@ export function PartnersPage() {
                   <span className="eyebrow">{partner.type}</span>
                   <h3>{partner.name}</h3>
                   <p>{partner.description}</p>
-                  <a
-                    className="button button-secondary"
-                    href={partner.link}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Zobacz partnera
+                  <a className="button button-secondary" href={contactHref}>
+                    Zapytaj o ten obszar wsparcia
                   </a>
                 </div>
               </article>

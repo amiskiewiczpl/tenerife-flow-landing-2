@@ -1,21 +1,32 @@
 import { SectionHeading } from '../components/SectionHeading'
-import { reasonCards } from '../data/content'
+import { whyUsPoints } from '../data/content'
 
 export function WhyUsSection() {
   return (
-    <section className="section section-soft" id="why-us">
+    <section className="section" id="why-us">
       <div className="container split-section">
-        <SectionHeading
-          eyebrow="Dlaczego my"
-          title="Nie sprzedajemy przypadkowych wakacji. Projektujemy pobyt tak, żeby naprawdę pasował do Ciebie."
-          description="To bardziej prywatna organizacja doświadczenia niż zwykła sprzedaż wyjazdu."
-        />
+        <div className="why-us-intro">
+          <SectionHeading
+            eyebrow="Dlaczego my"
+            title="Przewagą nie jest liczba opcji. Przewagą jest jakość selekcji i sposób prowadzenia klienta."
+            description="Ta usługa ma działać spokojnie, selektywnie i bez nadmiaru. Dlatego stawiamy na lokalne rozeznanie, dopasowanie i concierge mindset."
+          />
+          <div className="why-us-note">
+            <span className="eyebrow">Quiet luxury service</span>
+            <p>
+              Dla nas premium nie oznacza przesady. Oznacza lepsze decyzje,
+              spokojniejszy proces i pobyt, który od początku jest bardziej
+              dopracowany.
+            </p>
+          </div>
+        </div>
 
         <div className="reason-grid editorial-grid">
-          {reasonCards.map((reason, index) => (
-            <article className="reason-card" key={reason}>
+          {whyUsPoints.map((reason, index) => (
+            <article className="reason-card" key={reason.title}>
               <span className="reason-index">0{index + 1}</span>
-              <p>{reason}</p>
+              <h3>{reason.title}</h3>
+              <p>{reason.text}</p>
             </article>
           ))}
         </div>

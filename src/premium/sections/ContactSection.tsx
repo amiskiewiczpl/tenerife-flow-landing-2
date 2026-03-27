@@ -1,6 +1,55 @@
+import type { FormEvent } from 'react'
+import { useState } from 'react'
 import { SectionHeading } from '../components/SectionHeading'
 
+const contactEmail = 'hello@tenerife-flow.com'
+
 export function ContactSection() {
+  const [statusMessage, setStatusMessage] = useState(
+    'Po wysłaniu otworzy się gotowy draft maila z Twoim briefem.',
+  )
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    const form = event.currentTarget
+    const formData = new FormData(form)
+
+    const travelDate = String(formData.get('travelDate') ?? '').trim()
+    const guests = String(formData.get('guests') ?? '').trim()
+    const tripType = String(formData.get('tripType') ?? '').trim()
+    const budget = String(formData.get('budget') ?? '').trim()
+    const expectations = String(formData.get('expectations') ?? '').trim()
+    const priorities = String(formData.get('priorities') ?? '').trim()
+    const contact = String(formData.get('contact') ?? '').trim()
+
+    const subject = encodeURIComponent('Zapytanie concierge Tenerife Flow')
+    const body = encodeURIComponent(
+      [
+        'Dzień dobry,',
+        '',
+        'przesyłam brief dotyczący pobytu na Teneryfie:',
+        '',
+        `Termin wyjazdu: ${travelDate}`,
+        `Liczba osób: ${guests}`,
+        `Typ wyjazdu: ${tripType}`,
+        `Budżet orientacyjny: ${budget}`,
+        '',
+        'Czego oczekuję:',
+        expectations,
+        '',
+        'Co jest dla mnie najważniejsze:',
+        priorities,
+        '',
+        `Kontakt zwrotny: ${contact}`,
+      ].join('\n'),
+    )
+
+    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`
+    setStatusMessage('Draft maila został przygotowany. Jeśli nic się nie otworzyło, napisz bezpośrednio na hello@tenerife-flow.com.')
+    form.reset()
+  }
+
   return (
     <section className="section contact-section" id="contact">
       <div className="container contact-grid">
@@ -8,7 +57,7 @@ export function ContactSection() {
           <SectionHeading
             eyebrow="Kontakt"
             title="Opowiedz nam, jak chcesz przeżyć Teneryfę. My zamienimy to w dopracowany plan i spokojny wyjazd."
-            description="Formularz jest gotowy wizualnie i może zostać podpięty pod backend lub automatyzację w kolejnym kroku."
+            description="To najprostszy sposób, żeby zacząć rozmowę o zakresie concierge, rytmie pobytu i poziomie wsparcia, którego naprawdę potrzebujesz."
           />
 
           <div className="contact-intro-card">
@@ -22,15 +71,15 @@ export function ContactSection() {
 
           <div className="contact-actions">
             <a className="button button-primary" href="#form">
-              Wypełnij formularz
+              Wypełnij brief
             </a>
-            <a className="button button-secondary" href="#form">
-              Umów rozmowę
+            <a className="button button-secondary" href={`mailto:${contactEmail}`}>
+              Napisz bezpośrednio
             </a>
           </div>
         </div>
 
-        <form className="contact-form" id="form">
+        <form className="contact-form" id="form" onSubmit={handleSubmit}>
           <div className="contact-form-head">
             <span className="contact-form-kicker">Private inquiry</span>
             <h3>Opowiedz nam o pobycie, który chcesz stworzyć</h3>
@@ -43,22 +92,27 @@ export function ContactSection() {
           <div className="contact-form-grid">
             <label>
               Termin wyjazdu
-              <input type="text" name="travelDate" placeholder="np. listopad 2026" />
+              <input
+                type="text"
+                name="travelDate"
+                placeholder="np. listopad 2026"
+                required
+              />
             </label>
             <label>
               Liczba osób
-              <input type="text" name="guests" placeholder="np. 2 osoby" />
+              <input type="text" name="guests" placeholder="np. 2 osoby" required />
             </label>
             <label>
               Typ wyjazdu
-              <select name="tripType" defaultValue="">
+              <select name="tripType" defaultValue="" required>
                 <option value="" disabled>
                   Wybierz opcję
                 </option>
                 <option>Romantyczny pobyt</option>
                 <option>Relaks premium</option>
-                <option>Dłuższy pobyt / relokacja</option>
-                <option>Celebracja / specjalna okazja</option>
+                <option>Dłuższy pobyt lub relokacja</option>
+                <option>Celebracja lub specjalna okazja</option>
               </select>
             </label>
             <label>
@@ -71,6 +125,7 @@ export function ContactSection() {
                 name="expectations"
                 rows={4}
                 placeholder="Opisz, jaki klimat pobytu chcesz osiągnąć."
+                required
               />
             </label>
             <label className="contact-field-wide">
@@ -79,21 +134,24 @@ export function ContactSection() {
                 name="priorities"
                 rows={4}
                 placeholder="Spokój, estetyka, brak chaosu, aktywności, wsparcie na miejscu..."
+                required
               />
             </label>
             <label className="contact-field-wide">
               Kontakt
-              <input type="text" name="contact" placeholder="email lub telefon" />
+              <input
+                type="text"
+                name="contact"
+                placeholder="adres e-mail lub numer telefonu"
+                required
+              />
             </label>
           </div>
 
           <div className="contact-submit-row">
-            <p>
-              Odpowiadamy spokojnie i konkretnie, z propozycją najlepszego kierunku
-              działania dla Twojego pobytu.
-            </p>
+            <p>{statusMessage}</p>
             <button type="submit" className="button button-primary button-submit">
-              Wyślij zapytanie
+              Przygotuj wiadomość
             </button>
           </div>
         </form>

@@ -1,29 +1,41 @@
 import { SectionHeading } from '../components/SectionHeading'
-import { socialProofEntries } from '../data/content'
+import { caseStudies } from '../data/content'
 
 export function SocialProofSection() {
   return (
     <section className="section social-proof-section" id="social-proof">
       <div className="container">
         <SectionHeading
-          eyebrow="Opinie / social proof"
-          title="Miejsce na prawdziwe historie klientów i obraz dopracowanych pobytów"
-          description="Układ jest przygotowany na realne rekomendacje, zdjęcia i krótkie podsumowania doświadczeń. Bez slidera, bez krzykliwego efektu, bez utraty wiarygodności."
+          eyebrow="Historie klientów i opinie"
+          title="Trzy krótkie historie pokazujące, jak wygląda dobrze poprowadzony pobyt"
+          description="To nie są tylko cytaty. Każda historia pokazuje sytuację wyjściową, nasze podejście i efekt końcowy, który klient realnie odczuwa."
         />
 
         <div className="social-proof-grid">
-          {socialProofEntries.map((entry, index) => (
+          {caseStudies.map((entry, index) => (
             <article
               className={`social-proof-card social-proof-card-${index + 1}`}
-              key={`${entry.name}-${index}`}
+              key={entry.title}
             >
               <div className="social-proof-media">
-                <img src={entry.image} alt={entry.meta} />
+                <img src={entry.image} alt={entry.client} />
               </div>
               <div className="social-proof-copy">
-                <span className="social-proof-meta">{entry.meta}</span>
-                <p className="social-proof-quote">"{entry.quote}"</p>
-                <p className="social-proof-name">{entry.name}</p>
+                <span className="social-proof-meta">{entry.client}</span>
+                <h3>{entry.title}</h3>
+                <p className="social-proof-detail">
+                  <strong>Sytuacja:</strong> {entry.challenge}
+                </p>
+                <p className="social-proof-detail">
+                  <strong>Nasze podejście:</strong> {entry.solution}
+                </p>
+                <p className="social-proof-name">
+                  <strong>Efekt:</strong> {entry.result}
+                </p>
+                <div className="social-proof-quote-box">
+                  <span className="social-proof-quote-label">Opinia klienta</span>
+                  <p className="social-proof-quote">„{entry.quote}”</p>
+                </div>
               </div>
             </article>
           ))}

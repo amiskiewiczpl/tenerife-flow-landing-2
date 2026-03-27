@@ -3,19 +3,20 @@ import { processSteps } from '../data/content'
 
 export function ProcessSection() {
   return (
-    <section className="section" id="process">
+    <section className="section process-section" id="process">
       <div className="container">
         <SectionHeading
-          eyebrow="Proces"
-          title="Jak to działa"
-          description="Lekko, jasno i bez zbędnych etapów."
+          eyebrow="Jak to działa"
+          title="Prosty proces od pierwszego kontaktu do wsparcia na miejscu"
+          description="Cała współpraca ma być czytelna, spokojna i łatwa do zrozumienia już przy pierwszym wejściu na stronę."
         />
 
         <div className="process-grid">
           {processSteps.map((step, index) => (
-            <article className="process-card" key={step}>
+            <article className="process-card" key={step.title}>
               <span className="process-number">0{index + 1}</span>
-              <p>{step}</p>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
             </article>
           ))}
         </div>

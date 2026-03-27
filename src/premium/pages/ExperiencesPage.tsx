@@ -1,8 +1,8 @@
-import { curatedExperiences } from '../data/content'
+import { curatedCategories, curatedExperiences } from '../data/content'
 import { Footer } from '../sections/Footer'
 import { Header } from '../sections/Header'
 
-const contactHref = `${import.meta.env.BASE_URL}#contact`
+const contactHref = `${import.meta.env.BASE_URL}contact.html`
 
 export function ExperiencesPage() {
   return (
@@ -22,6 +22,14 @@ export function ExperiencesPage() {
         </section>
 
         <section className="section experiences-page">
+          <div className="container experiences-intro">
+            <ul className="pill-list">
+              {curatedCategories.map((category) => (
+                <li key={category.title}>{category.title}</li>
+              ))}
+            </ul>
+          </div>
+
           <div className="container experiences-grid">
             {curatedExperiences.map((experience) => (
               <article className="experience-card" key={experience.title}>

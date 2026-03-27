@@ -6,14 +6,16 @@ import {
 
 export function CuratedCategoriesSection() {
   return (
-    <section className="section curated-section" aria-labelledby="curated-title">
+    <section className="section curated-section" id="offer" aria-labelledby="curated-title">
       <div className="container">
         <div className="curated-heading">
-          <span className="eyebrow">Co możemy zorganizować</span>
-          <h2 id="curated-title">Curated experiences dobrane do stylu Twojego pobytu</h2>
+          <span className="eyebrow">Oferta i obszary wsparcia</span>
+          <h2 id="curated-title">
+            Kategorie usług i doświadczeń, które składają się na lepszy pobyt
+          </h2>
           <p>
-            Nie tworzymy marketplace&apos;u z atrakcjami. Selekcjonujemy doświadczenia,
-            które pasują do rytmu wyjazdu, poziomu wygody i charakteru klienta.
+            Nie budujemy marketplace&apos;u z atrakcjami. Selekcjonujemy obszary, które
+            realnie wpływają na jakość całego wyjazdu i układamy je w spójną całość.
           </p>
         </div>
 
@@ -46,12 +48,11 @@ export function CuratedCategoriesSection() {
 
         <div className="curated-examples">
           <div className="curated-examples-copy">
-            <span className="eyebrow">Przykładowe doświadczenia</span>
-            <h3>Curated, selekcyjne i wpisane w charakter pobytu</h3>
+            <span className="eyebrow">Zajawka doświadczeń</span>
+            <h3>Od oceanu po wellness, ale zawsze w curated premium feel</h3>
             <p>
-              Katamaran, Teide, guachinche, tenis, padel, wellness czy fizjoterapia
-              nie są tu osobnymi produktami. To elementy większego, dopracowanego
-              doświadczenia.
+              To tylko przykłady tego, co możemy zorganizować. Każde doświadczenie ma
+              sens dopiero wtedy, gdy wzmacnia rytm całego pobytu.
             </p>
           </div>
 

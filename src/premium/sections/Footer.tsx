@@ -7,7 +7,7 @@ export function Footer() {
         <div className="footer-brand-block">
           <p className="footer-brand-name">Tenerife Flow</p>
           <p className="footer-brand-copy">
-            Boutique concierge travel service dla klientów, którzy chcą wyższego
+            Butikowy concierge travel service dla klientów, którzy chcą wyższego
             standardu pobytu, spokojniejszej organizacji i bardziej dopracowanego
             doświadczenia na Teneryfie.
           </p>
@@ -19,6 +19,8 @@ export function Footer() {
             <a href={baseUrl}>Start</a>
             <a href={`${baseUrl}experiences.html`}>Doświadczenia</a>
             <a href={`${baseUrl}partners.html`}>Partnerzy</a>
+            <a href={`${baseUrl}articles.html`}>Artykuły</a>
+            <a href={`${baseUrl}contact.html`}>Kontakt</a>
           </div>
         </div>
 
@@ -28,7 +30,7 @@ export function Footer() {
             Jeśli chcesz sprawdzić, jaki zakres concierge będzie najlepszy dla Twojego
             pobytu, zacznij od krótkiej konsultacji.
           </p>
-          <a className="button button-secondary footer-button" href={`${baseUrl}#contact`}>
+          <a className="button button-secondary footer-button" href={`${baseUrl}contact.html`}>
             Umów rozmowę
           </a>
         </div>

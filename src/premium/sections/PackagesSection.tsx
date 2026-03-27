@@ -1,5 +1,5 @@
 import { SectionHeading } from '../components/SectionHeading'
-import { packageCards, specialServices } from '../data/content'
+import { packageCards } from '../data/content'
 
 export function PackagesSection() {
   return (
@@ -7,8 +7,8 @@ export function PackagesSection() {
       <div className="container">
         <SectionHeading
           eyebrow="Pakiety"
-          title="Wybierz poziom wsparcia, którego naprawdę potrzebujesz"
-          description="Każdy pakiet odpowiada innemu stylowi klienta. Różnią się zakresem opieki, ale każdy prowadzi do spokojniejszego, lepiej zaplanowanego pobytu."
+          title="Wybierz poziom wsparcia, który najlepiej pasuje do Twojego pobytu"
+          description="Trzy klarowne pakiety, równo zbudowane i łatwe do porównania. Różnią się zakresem opieki, ale każdy prowadzi do spokojniejszego wyjazdu."
         />
 
         <div className="package-grid package-grid-sales">
@@ -17,9 +17,7 @@ export function PackagesSection() {
               className={`package-card package-card-sales ${item.featured ? 'package-card-featured' : ''}`}
               key={item.name}
             >
-              {item.featured ? (
-                <span className="package-recommended">Rekomendowany</span>
-              ) : null}
+              {item.featured ? <span className="package-recommended">Rekomendowany</span> : null}
 
               <div className="package-header">
                 <div className="package-heading-block">
@@ -42,21 +40,12 @@ export function PackagesSection() {
 
               <a
                 className={`button package-cta ${item.featured ? 'button-primary' : 'button-secondary'}`}
-                href="#contact"
+                href={`${import.meta.env.BASE_URL}contact.html`}
               >
                 {item.cta}
               </a>
             </article>
           ))}
-        </div>
-
-        <div className="special-services editorial-strip">
-          <span className="eyebrow">Usługi specjalne</span>
-          <ul className="pill-list">
-            {specialServices.map((service) => (
-              <li key={service}>{service}</li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>

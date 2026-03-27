@@ -1,5 +1,5 @@
 import { SectionHeading } from '../components/SectionHeading'
-import { aboutComparison, aboutHighlights } from '../data/content'
+import { aboutHighlights } from '../data/content'
 
 export function AboutSection() {
   return (
@@ -8,17 +8,17 @@ export function AboutSection() {
         <div className="about-copy">
           <SectionHeading
             eyebrow="O nas"
-            title="Projektujemy pobyty jak prywatny concierge, a nie jak gotowy pakiet sprzedażowy."
-            description="Jesteśmy po to, żeby uporządkować decyzje, skrócić drogę do dobrych wyborów i przeprowadzić klienta przez cały pobyt z większym spokojem."
+            title="Tworzymy concierge travel service skupiony na Teneryfie i jakości całego pobytu."
+            description="Nie działamy jak anonimowe biuro podróży. Pracujemy bliżej klienta, bardziej selektywnie i z większym wyczuciem tego, jak ma wyglądać cały rytm wyjazdu."
           />
 
-          <div className="about-comparison">
-            {aboutComparison.map((item) => (
-              <article className="about-comparison-card" key={item.label}>
-                <span className="eyebrow">{item.label}</span>
-                <p>{item.text}</p>
-              </article>
-            ))}
+          <div className="about-signature">
+            <span className="eyebrow">Jak nas odróżnić</span>
+            <p>
+              Zamiast sprzedawać gotową ofertę, najpierw rozumiemy klienta. Potem
+              selekcjonujemy miejsca, ludzi i doświadczenia tak, by całość była
+              spójna, jakościowa i naprawdę godna zaufania.
+            </p>
           </div>
         </div>
 
