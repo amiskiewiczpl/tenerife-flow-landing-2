@@ -1,33 +1,47 @@
 import { SectionHeading } from '../components/SectionHeading'
 import { aboutHighlights } from '../data/content'
 
+const shortAboutCopy = [
+  'Tworzymy butikowy concierge travel service dla klientów, którzy cenią wygodę i dobrą selekcję.',
+  'Teneryfa daje ocean, klimat i jakość życia, ale tylko dobrze wybrana potrafi naprawdę zachwycić.',
+  'Najpierw porządkujemy potrzeby, potem projektujemy pobyt i przechodzimy do realizacji.',
+]
+
 export function AboutSection() {
+  const featuredHighlights = aboutHighlights.slice(0, 3)
+
   return (
     <section className="section about-section section-soft" id="about">
       <div className="container about-grid">
         <div className="about-copy">
           <SectionHeading
             eyebrow="O nas"
-            title="Tworzymy concierge travel service skupiony na Teneryfie i jakości całego pobytu."
-            description="Nie działamy jak anonimowe biuro podróży. Pracujemy bliżej klienta, bardziej selektywnie i z większym wyczuciem tego, jak ma wyglądać cały rytm wyjazdu."
+            title="Butikowo, lokalnie i z naciskiem na jakość całego doświadczenia."
+            description="Na homepage zostawiamy tylko najważniejszy kontekst. Szersze zaplecze, partnerów i pełniejsze story rozwijamy na podstronach."
           />
 
           <div className="about-signature">
-            <span className="eyebrow">Jak nas odróżnić</span>
+            <span className="eyebrow">Short version</span>
             <p>
-              Zamiast sprzedawać gotową ofertę, najpierw rozumiemy klienta. Potem
-              selekcjonujemy miejsca, ludzi i doświadczenia tak, by całość była
-              spójna, jakościowa i naprawdę godna zaufania.
+              Jesteśmy zespołem, który łączy znajomość wyspy, wyczucie jakości i
+              concierge mindset. To wystarczy, żeby wiedzieć, czy chcemy dalej
+              rozmawiać o Twoim pobycie.
             </p>
+          </div>
+
+          <div className="about-cta">
+            <a className="button button-secondary" href={`${import.meta.env.BASE_URL}partners.html`}>
+              Zobacz partnerów i zaplecze
+            </a>
           </div>
         </div>
 
         <div className="about-highlights">
-          {aboutHighlights.map((item, index) => (
+          {featuredHighlights.map((item, index) => (
             <article className="about-highlight-card" key={item.title}>
               <span className="about-index">0{index + 1}</span>
               <h3>{item.title}</h3>
-              <p>{item.text}</p>
+              <p>{shortAboutCopy[index]}</p>
             </article>
           ))}
         </div>

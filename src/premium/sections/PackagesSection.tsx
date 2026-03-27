@@ -7,8 +7,8 @@ export function PackagesSection() {
       <div className="container">
         <SectionHeading
           eyebrow="Pakiety"
-          title="Wybierz poziom wsparcia, który najlepiej pasuje do Twojego pobytu"
-          description="Trzy klarowne pakiety, równo zbudowane i łatwe do porównania. Różnią się zakresem opieki, ale każdy prowadzi do spokojniejszego wyjazdu."
+          title="Trzy poziomy wsparcia. Jeden cel: lepszy pobyt i mniej decyzji po Twojej stronie."
+          description="Na homepage pokazujemy tylko zakres. Szczegóły dopasowujemy już w rozmowie, bo każdy pobyt wymaga innego poziomu concierge."
         />
 
         <div className="package-grid package-grid-sales">
@@ -32,7 +32,7 @@ export function PackagesSection() {
                 <p className="package-description">{item.description}</p>
 
                 <ul className="package-benefits package-benefits-list">
-                  {item.benefits.map((benefit) => (
+                  {item.benefits.slice(0, 3).map((benefit) => (
                     <li key={benefit}>{benefit}</li>
                   ))}
                 </ul>
@@ -46,6 +46,16 @@ export function PackagesSection() {
               </a>
             </article>
           ))}
+        </div>
+
+        <div className="contact-submit-row">
+          <p>
+            Nie wiesz, który pakiet wybrać? Wystarczy krótki brief, a dobierzemy
+            właściwy model współpracy.
+          </p>
+          <a className="button button-secondary" href={`${import.meta.env.BASE_URL}contact.html`}>
+            Przejdź do kontaktu
+          </a>
         </div>
       </div>
     </section>

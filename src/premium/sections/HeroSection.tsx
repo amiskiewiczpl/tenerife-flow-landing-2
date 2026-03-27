@@ -5,16 +5,16 @@ export function HeroSection() {
     <section className="hero-section" id="top">
       <div className="container hero-grid">
         <div className="hero-copy">
-          <span className="eyebrow">Boutique concierge travel service</span>
-          <h1>Spokojnie zaplanowany pobyt na Teneryfie.</h1>
+          <span className="eyebrow">Concierge travel for Tenerife</span>
+          <h1>Premium pobyt na Teneryfie, bez chaosu organizacyjnego.</h1>
           <p className="hero-lead">
-            Projektujemy pobyty premium dla osób, które chcą lepszej selekcji miejsc i
-            mniejszego chaosu przed wyjazdem.
+            Projektujemy krótszy, lepszy proces dla osób, które chcą przyjechać na
+            gotowe i mieć wszystko dobrze poprowadzone.
           </p>
           <p className="hero-description">
-            Łączymy concierge, lokalną znajomość wyspy i spokojny proces organizacji.
-            Zamiast dziesiątek decyzji dostajesz klarowny kierunek, sprawdzone miejsca
-            i wsparcie wtedy, kiedy naprawdę go potrzebujesz.
+            Zamiast przeszukiwać dziesiątki opcji, dostajesz selekcję właściwych miejsc,
+            dopasowany plan pobytu i wsparcie, które prowadzi do decyzji, nie do
+            kolejnych pytań.
           </p>
 
           <div className="hero-actions">
@@ -40,10 +40,10 @@ export function HeroSection() {
               alt="Elegancki pobyt premium na Teneryfie"
             />
             <div className="hero-visual-overlay">
-              <span className="eyebrow">Concierge-first</span>
+              <span className="eyebrow">Selected, not crowded</span>
               <p>
-                Dobrze zaplanowany pobyt to nie lista atrakcji. To rytm, miejsca i
-                decyzje, które od początku są lżejsze.
+                Home pokazuje tylko kierunek: premium plan, sprawdzona selekcja i jasny
+                następny krok do rozmowy.
               </p>
             </div>
           </div>

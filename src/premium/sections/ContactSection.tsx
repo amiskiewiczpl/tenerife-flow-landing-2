@@ -46,7 +46,9 @@ export function ContactSection() {
     )
 
     window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`
-    setStatusMessage('Draft maila został przygotowany. Jeśli nic się nie otworzyło, napisz bezpośrednio na hello@tenerife-flow.com.')
+    setStatusMessage(
+      'Draft maila został przygotowany. Jeśli nic się nie otworzyło, napisz bezpośrednio na hello@tenerife-flow.com.',
+    )
     form.reset()
   }
 
@@ -55,17 +57,16 @@ export function ContactSection() {
       <div className="container contact-grid">
         <div className="contact-copy">
           <SectionHeading
-            eyebrow="Kontakt"
-            title="Opowiedz nam, jak chcesz przeżyć Teneryfę. My zamienimy to w dopracowany plan i spokojny wyjazd."
-            description="To najprostszy sposób, żeby zacząć rozmowę o zakresie concierge, rytmie pobytu i poziomie wsparcia, którego naprawdę potrzebujesz."
+            eyebrow="Final CTA"
+            title="Jeśli chcesz lepszego pobytu na Teneryfie, zacznij od krótkiego briefu."
+            description="To wystarczy, żeby ocenić zakres, pakiet i kierunek organizacji. Bez długich formularzy i bez zbędnego tłumaczenia."
           />
 
           <div className="contact-intro-card">
-            <span className="contact-intro-label">Jak pracujemy</span>
+            <span className="contact-intro-label">Co dalej</span>
             <p>
-              Zaczynamy od krótkiej rozmowy o Twoim stylu pobytu, priorytetach i
-              oczekiwanym standardzie. Potem przygotowujemy kierunek działania,
-              zamiast zostawiać Cię z listą przypadkowych opcji.
+              Po briefie wracamy z propozycją najlepszego modelu współpracy i dalszych
+              kroków. Jeśli jest dopasowanie, przechodzimy do projektu pobytu.
             </p>
           </div>
 
@@ -84,8 +85,8 @@ export function ContactSection() {
             <span className="contact-form-kicker">Private inquiry</span>
             <h3>Opowiedz nam o pobycie, który chcesz stworzyć</h3>
             <p>
-              Im lepiej poznamy Twój styl i oczekiwania, tym precyzyjniej dobierzemy
-              plan, rekomendacje i zakres concierge.
+              Im lepiej poznamy Twój styl i oczekiwania, tym szybciej dobierzemy plan,
+              rekomendacje i odpowiedni poziom concierge.
             </p>
           </div>
 

@@ -299,63 +299,43 @@ export const exampleExperienceCards = [
 
 export const curatedCategories = [
   {
-    title: 'Ocean i rejsy',
-    text: 'Rejsy, wyjścia na wodę i morskie doświadczenia dobierane pod rytm pobytu, nie pod masową turystykę.',
+    title: 'Pobyty leisure i romantic stay',
+    text: 'Wyjazdy dla par i klientów premium leisure, którzy oczekują spokojnego rytmu, dobrych adresów i większej wygody od pierwszego dnia.',
   },
   {
-    title: 'Teide i natura',
-    text: 'Trasy, widoki i dni w naturze projektowane z myślą o komforcie, energii i estetyce całego wyjazdu.',
+    title: 'Curated experiences',
+    text: 'Ocean, Teide, lokalne smaki, aktywność i wellness dobieramy jako część spójnego pobytu, a nie osobny katalog atrakcji.',
   },
   {
-    title: 'Smaki wyspy',
-    text: 'Lokalne adresy, kolacje i stoły, które naprawdę wzmacniają charakter pobytu.',
-  },
-  {
-    title: 'Sport i aktywność',
-    text: 'Tenis, padel, trening lub aktywność wpisana w plan bez rozbijania spokojnego flow wyjazdu.',
-  },
-  {
-    title: 'Wellness i regeneracja',
-    text: 'Spa, fizjoterapia i odzyskiwanie energii organizowane z takim samym wyczuciem, jak reszta pobytu.',
-  },
-  {
-    title: 'Transport i wygoda',
-    text: 'Logistyka, przejazdy i komfort poruszania się, dzięki którym pobyt jest lżejszy od pierwszego dnia.',
+    title: 'Long stay i relokacja',
+    text: 'Wspieramy również osoby planujące dłuższy pobyt, spokojny start na wyspie lub relokację czasową.',
   },
 ]
 
 export const curatedSpotlights = [
   {
-    title: 'Ocean i wyspa oglądane bez pośpiechu',
+    title: 'Ocean, natura i dobre adresy w jednym rytmie pobytu',
     copy:
-      'Katamaran, whale watching i wyjścia na wodę dobieramy pod klimat pobytu, a nie pod listę atrakcji do zaliczenia.',
+      'Łączymy doświadczenia, miejsca i logistykę tak, żeby klient nie musiał samodzielnie składać wszystkiego od zera.',
     image: image('sunset.svg'),
-    tag: 'Ocean i rejsy',
+    tag: 'Co organizujemy',
   },
   {
-    title: 'Teide i natura w lepszym rytmie',
+    title: 'Od romantycznego wyjazdu po dłuższy pobyt na wyspie',
     copy:
-      'Wyprawy wokół Teide, punkty widokowe i trasy planujemy z wyczuciem tempa, komfortu i światła dnia.',
+      'Zakres dobieramy do stylu klienta: od krótszych pobytów premium po spokojnie poprowadzone long stay i relocation support.',
     image: image('roadtrip.svg'),
-    tag: 'Teide i natura',
-  },
-  {
-    title: 'Smaki wyspy i dobre lokalne adresy',
-    copy:
-      'Guachinche, spokojne lunche i kolacje są częścią dopracowanego pobytu, a nie przypadkowym dodatkiem.',
-    image: image('dining.svg'),
-    tag: 'Smaki wyspy',
+    tag: 'Zakres wsparcia',
   },
 ]
 
 export const curatedExperienceExamples = [
-  'katamaran o spokojniejszym, bardziej prywatnym charakterze',
-  'dzień wokół Teide z dopracowaną trasą i tempem',
-  'wybrane guachinche i stoły warte zaufania',
-  'tenis i padel wpisane w rytm pobytu',
-  'wellness i regeneracja bez przypadkowych adresów',
-  'fizjoterapia i mobility support na miejscu',
-  'roadtrip z lepszą logistyką i widokami',
+  'katamaran i ocean w spokojniejszym wydaniu',
+  'dzień wokół Teide z dopracowaną trasą',
+  'wybrane guachinche i lokalne stoły',
+  'tenis, padel i aktywność wpisane w rytm pobytu',
+  'wellness, fizjoterapia i regeneracja',
+  'roadtripy i spokojnie poprowadzone long stay',
 ]
 
 export const caseStudies = [
