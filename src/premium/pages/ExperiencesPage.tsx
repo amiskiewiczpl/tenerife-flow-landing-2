@@ -1,3 +1,4 @@
+import { ResponsiveImage } from '../components/ResponsiveImage'
 import { Footer } from '../sections/Footer'
 import { Header } from '../sections/Header'
 import { getLocale, withLocale } from '../locale'
@@ -100,7 +101,13 @@ export function ExperiencesPage() {
             {content.cards.map(([title, description, tag, image]) => (
               <article className="experience-card" key={title}>
                 <div className="experience-card-image">
-                  <img src={`${baseUrl}images/${image}`} alt={title} />
+                  <ResponsiveImage
+                    src={`${baseUrl}images/${image}`}
+                    alt={title}
+                    loading="lazy"
+                    sizes="(max-width: 719px) 100vw, (max-width: 1279px) 50vw, 33vw"
+                    objectPosition="center center"
+                  />
                   <span className="experience-tag">{tag}</span>
                 </div>
                 <div className="experience-card-copy">

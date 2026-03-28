@@ -1,3 +1,4 @@
+import { ResponsiveImage } from '../components/ResponsiveImage'
 import { Footer } from '../sections/Footer'
 import { Header } from '../sections/Header'
 import { getLocale, withLocale } from '../locale'
@@ -101,7 +102,13 @@ export function PartnersPage() {
             {content.featured.map(([name, type, description, image]) => (
               <article className="featured-partner" key={name}>
                 <div className="featured-partner-visual">
-                  <img src={`${baseUrl}images/${image}`} alt={name} />
+                  <ResponsiveImage
+                    src={`${baseUrl}images/${image}`}
+                    alt={name}
+                    loading="lazy"
+                    sizes="(max-width: 979px) 100vw, 46vw"
+                    objectPosition="center center"
+                  />
                 </div>
                 <div className="featured-partner-copy">
                   <span className="eyebrow">{type}</span>

@@ -10,7 +10,7 @@ const baseUrl = import.meta.env.BASE_URL
 
 const copy = {
   pl: {
-    tagline: 'premium stay planning',
+    tagline: 'private island concierge',
     navLabel: 'Główna nawigacja',
     mobileNavLabel: 'Główna nawigacja mobilna',
     openMenu: 'Otwórz menu',
@@ -26,7 +26,7 @@ const copy = {
     ],
   },
   en: {
-    tagline: 'premium stay planning',
+    tagline: 'private island concierge',
     navLabel: 'Main navigation',
     mobileNavLabel: 'Mobile main navigation',
     openMenu: 'Open menu',
@@ -42,7 +42,7 @@ const copy = {
     ],
   },
   es: {
-    tagline: 'planificación premium de estancias',
+    tagline: 'private island concierge',
     navLabel: 'Navegación principal',
     mobileNavLabel: 'Navegación móvil principal',
     openMenu: 'Abrir menú',

@@ -1,3 +1,4 @@
+import { ResponsiveImage } from '../components/ResponsiveImage'
 import { SectionHeading } from '../components/SectionHeading'
 import { getLocale } from '../locale'
 
@@ -120,6 +121,8 @@ const copy = {
   },
 } as const
 
+const imagePositions = ['center center', 'center 38%', 'center center'] as const
+
 export function SocialProofSection() {
   const content = copy[getLocale()]
 
@@ -139,7 +142,13 @@ export function SocialProofSection() {
               key={entry.title}
             >
               <div className="social-proof-media">
-                <img src={entry.image} alt={entry.client} />
+                <ResponsiveImage
+                  src={entry.image}
+                  alt={entry.client}
+                  loading="lazy"
+                  sizes="(max-width: 719px) 100vw, (max-width: 1279px) 50vw, 33vw"
+                  objectPosition={imagePositions[index] ?? 'center center'}
+                />
               </div>
               <div className="social-proof-copy">
                 <span className="social-proof-meta">{entry.client}</span>

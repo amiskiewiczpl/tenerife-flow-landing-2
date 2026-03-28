@@ -1,3 +1,4 @@
+import { ResponsiveImage } from '../components/ResponsiveImage'
 import { getLocale, withLocale } from '../locale'
 
 const baseUrl = import.meta.env.BASE_URL
@@ -93,9 +94,14 @@ export function HeroSection() {
 
         <div className="hero-visual">
           <div className="hero-visual-frame">
-            <img
+            <ResponsiveImage
               src={`${baseUrl}images/hero-premium.svg`}
               alt="Premium Tenerife stay"
+              loading="eager"
+              decoding="sync"
+              fetchPriority="high"
+              sizes="(max-width: 979px) 100vw, 52vw"
+              objectPosition="center center"
             />
             <div className="hero-visual-overlay">
               <span className="eyebrow">{content.visualEyebrow}</span>

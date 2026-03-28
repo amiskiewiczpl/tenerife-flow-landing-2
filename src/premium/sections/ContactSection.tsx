@@ -1,6 +1,8 @@
-import type { FormEvent } from 'react'
-import { useState } from 'react'
+import type { FocusEvent, FormEvent } from 'react'
+import { useMemo, useState } from 'react'
 import { SectionHeading } from '../components/SectionHeading'
+import { trackEvent } from '../lib/analytics'
+import { buildLeadSegment, submitContactLead } from '../lib/leadAutomation'
 import { getLocale } from '../locale'
 
 const contactEmail = 'hello@tenerife-flow.com'
@@ -20,19 +22,27 @@ const copy = {
     formTitle: 'Opowiedz nam o pobycie, który chcesz stworzyć',
     formDescription:
       'Im lepiej poznamy Twój styl i oczekiwania, tym szybciej dobierzemy plan, rekomendacje i odpowiedni poziom concierge.',
-    statusInitial: 'Po wysłaniu otworzy się gotowy draft maila z Twoim briefem.',
+    statusInitial: 'Po wysłaniu brief trafi do naszego workflow i wrócimy z następnym krokiem.',
+    statusSubmitting: 'Wysyłamy brief do workflow concierge.',
     statusReady:
-      'Draft maila został przygotowany. Jeśli nic się nie otworzyło, napisz bezpośrednio na hello@tenerife-flow.com.',
-    submit: 'Przygotuj wiadomość',
+      'Brief został wysłany. Jeśli jest dopasowanie, przejdziesz teraz do umawiania rozmowy lub otrzymasz kontakt zwrotny.',
+    statusFallback:
+      'Webhook nie jest skonfigurowany, więc przygotowaliśmy fallback mailowy. Jeśli nic się nie otworzyło, napisz na hello@tenerife-flow.com.',
+    statusError:
+      'Nie udało się wysłać briefu do workflow. Spróbuj ponownie albo napisz bezpośrednio na hello@tenerife-flow.com.',
+    submit: 'Wyślij brief',
+    bookingCta: 'Przejdź do kalendarza rozmowy',
     labels: {
       travelDate: 'Termin wyjazdu',
       guests: 'Liczba osób',
       tripType: 'Typ wyjazdu',
       budget: 'Budżet orientacyjny',
+      standard: 'Oczekiwany standard',
       expectations: 'Czego oczekujesz',
       priorities: 'Co jest dla Ciebie najważniejsze',
       contact: 'Kontakt',
       selectPlaceholder: 'Wybierz opcję',
+      standardPlaceholder: 'Wybierz poziom',
       travelDatePlaceholder: 'np. listopad 2026',
       guestsPlaceholder: 'np. 2 osoby',
       budgetPlaceholder: 'np. wycena indywidualna',
@@ -45,6 +55,11 @@ const copy = {
         'Relaks premium',
         'Dłuższy pobyt lub relokacja',
         'Celebracja lub specjalna okazja',
+      ],
+      standards: [
+        'Elevated comfort',
+        'Premium curated',
+        'Private concierge / high-touch',
       ],
       mailSubject: 'Zapytanie concierge Tenerife Flow',
       greeting: 'Dzień dobry,',
@@ -68,19 +83,27 @@ const copy = {
     formTitle: 'Tell us about the stay you want to create',
     formDescription:
       'The better we understand your style and expectations, the faster we can match the plan, recommendations and the right concierge level.',
-    statusInitial: 'After submitting, a ready email draft with your brief will open.',
+    statusInitial: 'After submitting, the brief will enter our concierge workflow.',
+    statusSubmitting: 'Sending your brief to the concierge workflow.',
     statusReady:
-      'The email draft has been prepared. If nothing opened, write directly to hello@tenerife-flow.com.',
-    submit: 'Prepare message',
+      'Your brief has been sent. If there is a fit, you will now move to booking a call or receive a direct follow-up.',
+    statusFallback:
+      'The webhook is not configured, so we prepared an email fallback. If nothing opened, write to hello@tenerife-flow.com.',
+    statusError:
+      'We could not send the brief to the workflow. Try again or write directly to hello@tenerife-flow.com.',
+    submit: 'Send brief',
+    bookingCta: 'Go to call calendar',
     labels: {
       travelDate: 'Travel date',
       guests: 'Number of guests',
       tripType: 'Trip type',
       budget: 'Approximate budget',
+      standard: 'Expected standard',
       expectations: 'What do you expect',
       priorities: 'What matters most to you',
       contact: 'Contact',
       selectPlaceholder: 'Choose an option',
+      standardPlaceholder: 'Choose the level',
       travelDatePlaceholder: 'e.g. November 2026',
       guestsPlaceholder: 'e.g. 2 guests',
       budgetPlaceholder: 'e.g. custom pricing',
@@ -92,6 +115,11 @@ const copy = {
         'Premium relaxation',
         'Longer stay or relocation',
         'Celebration or special occasion',
+      ],
+      standards: [
+        'Elevated comfort',
+        'Premium curated',
+        'Private concierge / high-touch',
       ],
       mailSubject: 'Tenerife Flow concierge inquiry',
       greeting: 'Hello,',
@@ -115,19 +143,27 @@ const copy = {
     formTitle: 'Cuéntanos qué estancia quieres crear',
     formDescription:
       'Cuanto mejor entendamos tu estilo y expectativas, más rápido podremos ajustar el plan, las recomendaciones y el nivel adecuado de concierge.',
-    statusInitial: 'Después de enviar, se abrirá un borrador de email con tu brief.',
+    statusInitial: 'Después de enviar, el brief entrará en nuestro workflow concierge.',
+    statusSubmitting: 'Enviando tu brief al workflow concierge.',
     statusReady:
-      'El borrador del email está listo. Si no se abrió nada, escribe directamente a hello@tenerife-flow.com.',
-    submit: 'Preparar mensaje',
+      'Tu brief ha sido enviado. Si hay encaje, pasarás ahora a reservar una llamada o recibirás seguimiento directo.',
+    statusFallback:
+      'El webhook no está configurado, así que preparamos un fallback por email. Si no se abrió nada, escribe a hello@tenerife-flow.com.',
+    statusError:
+      'No hemos podido enviar el brief al workflow. Inténtalo de nuevo o escribe directamente a hello@tenerife-flow.com.',
+    submit: 'Enviar brief',
+    bookingCta: 'Ir al calendario',
     labels: {
       travelDate: 'Fecha del viaje',
       guests: 'Número de personas',
       tripType: 'Tipo de viaje',
       budget: 'Presupuesto aproximado',
+      standard: 'Nivel esperado',
       expectations: 'Qué esperas',
       priorities: 'Qué es lo más importante para ti',
       contact: 'Contacto',
       selectPlaceholder: 'Elige una opción',
+      standardPlaceholder: 'Elige el nivel',
       travelDatePlaceholder: 'p. ej. noviembre 2026',
       guestsPlaceholder: 'p. ej. 2 personas',
       budgetPlaceholder: 'p. ej. presupuesto personalizado',
@@ -139,6 +175,11 @@ const copy = {
         'Relax premium',
         'Estancia larga o relocalización',
         'Celebración u ocasión especial',
+      ],
+      standards: [
+        'Elevated comfort',
+        'Premium curated',
+        'Private concierge / high-touch',
       ],
       mailSubject: 'Consulta de concierge Tenerife Flow',
       greeting: 'Hola,',
@@ -153,48 +194,163 @@ const copy = {
 export function ContactSection() {
   const locale = getLocale()
   const content = copy[locale]
+  const labels = content.labels
   const [statusMessage, setStatusMessage] = useState<string>(content.statusInitial)
+  const [bookingUrl, setBookingUrl] = useState<string | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [hasStartedForm, setHasStartedForm] = useState(false)
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const mailtoFallback = useMemo(() => {
+    return (payload: {
+      travelDate: string
+      guests: string
+      tripType: string
+      budget: string
+      standard: string
+      expectations: string
+      priorities: string
+      contact: string
+    }) => {
+      const subject = encodeURIComponent(labels.mailSubject)
+      const body = encodeURIComponent(
+        [
+          labels.greeting,
+          '',
+          labels.intro,
+          '',
+          `${labels.travelDate}: ${payload.travelDate}`,
+          `${labels.guests}: ${payload.guests}`,
+          `${labels.tripType}: ${payload.tripType}`,
+          `${labels.budget}: ${payload.budget}`,
+          `${labels.standard}: ${payload.standard}`,
+          '',
+          labels.expectationsTitle,
+          payload.expectations,
+          '',
+          labels.prioritiesTitle,
+          payload.priorities,
+          '',
+          `${labels.replyContact}: ${payload.contact}`,
+        ].join('\n'),
+      )
+
+      window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`
+    }
+  }, [labels])
+
+  const handleFormStart = (_event: FocusEvent<HTMLFormElement>) => {
+    if (hasStartedForm) {
+      return
+    }
+
+    setHasStartedForm(true)
+    trackEvent('form_start', {
+      form_name: 'contact_brief',
+      page_path: window.location.pathname,
+      locale,
+    })
+  }
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     const form = event.currentTarget
     const formData = new FormData(form)
-    const labels = content.labels
 
     const travelDate = String(formData.get('travelDate') ?? '').trim()
     const guests = String(formData.get('guests') ?? '').trim()
     const tripType = String(formData.get('tripType') ?? '').trim()
     const budget = String(formData.get('budget') ?? '').trim()
+    const standard = String(formData.get('standard') ?? '').trim()
     const expectations = String(formData.get('expectations') ?? '').trim()
     const priorities = String(formData.get('priorities') ?? '').trim()
     const contact = String(formData.get('contact') ?? '').trim()
 
-    const subject = encodeURIComponent(labels.mailSubject)
-    const body = encodeURIComponent(
-      [
-        labels.greeting,
-        '',
-        labels.intro,
-        '',
-        `${labels.travelDate}: ${travelDate}`,
-        `${labels.guests}: ${guests}`,
-        `${labels.tripType}: ${tripType}`,
-        `${labels.budget}: ${budget}`,
-        '',
-        labels.expectationsTitle,
-        expectations,
-        '',
-        labels.prioritiesTitle,
-        priorities,
-        '',
-        `${labels.replyContact}: ${contact}`,
-      ].join('\n'),
-    )
+    const basePayload = {
+      travelDate,
+      guests,
+      tripType,
+      budget,
+      standard,
+      expectations,
+      priorities,
+      contact,
+    }
 
-    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`
-    setStatusMessage(content.statusReady)
-    form.reset()
+    const leadPayload = {
+      locale,
+      pagePath: window.location.pathname,
+      source: 'website_contact_form',
+      submittedAt: new Date().toISOString(),
+      ...basePayload,
+      segment: buildLeadSegment(basePayload),
+    }
+
+    setIsSubmitting(true)
+    setBookingUrl(null)
+    setStatusMessage(content.statusSubmitting)
+
+    trackEvent('form_submit_attempt', {
+      form_name: 'contact_brief',
+      page_path: window.location.pathname,
+      locale,
+      trip_type: tripType,
+      budget_band: leadPayload.segment.budgetBand,
+      guest_band: leadPayload.segment.guestBand,
+      planning_window: leadPayload.segment.planningWindow,
+      service_level: leadPayload.segment.serviceLevel,
+    })
+
+    try {
+      const result = await submitContactLead(leadPayload)
+
+      if (!result.ok && result.fallback === 'mailto') {
+        mailtoFallback(basePayload)
+        setStatusMessage(content.statusFallback)
+        trackEvent('form_submit_fallback', {
+          form_name: 'contact_brief',
+          page_path: window.location.pathname,
+          locale,
+        })
+        form.reset()
+        return
+      }
+
+      const nextBookingUrl = result.bookingUrl ?? null
+
+      setBookingUrl(nextBookingUrl)
+      setStatusMessage(result.message ?? content.statusReady)
+
+      trackEvent('form_submit_success', {
+        form_name: 'contact_brief',
+        page_path: window.location.pathname,
+        locale,
+        trip_type: tripType,
+        budget_band: leadPayload.segment.budgetBand,
+        guest_band: leadPayload.segment.guestBand,
+        planning_window: leadPayload.segment.planningWindow,
+        service_level: leadPayload.segment.serviceLevel,
+        booking_step_ready: Boolean(nextBookingUrl),
+      })
+
+      form.reset()
+
+      if (nextBookingUrl) {
+        window.setTimeout(() => {
+          window.location.href = nextBookingUrl
+        }, 1200)
+      }
+    } catch (_error) {
+      setStatusMessage(content.statusError)
+      setBookingUrl(null)
+      trackEvent('form_submit_error', {
+        form_name: 'contact_brief',
+        page_path: window.location.pathname,
+        locale,
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -213,16 +369,25 @@ export function ContactSection() {
           </div>
 
           <div className="contact-actions">
-            <a className="button button-primary" href="#form">
+            <a className="button button-primary" href="#form" data-track="cta_contact_start">
               {content.primaryCta}
             </a>
-            <a className="button button-secondary" href={`mailto:${contactEmail}`}>
+            <a
+              className="button button-secondary"
+              href={`mailto:${contactEmail}`}
+              data-track="cta_direct_email"
+            >
               {content.secondaryCta}
             </a>
           </div>
         </div>
 
-        <form className="contact-form" id="form" onSubmit={handleSubmit}>
+        <form
+          className="contact-form"
+          id="form"
+          onSubmit={handleSubmit}
+          onFocusCapture={handleFormStart}
+        >
           <div className="contact-form-head">
             <span className="contact-form-kicker">{content.formKicker}</span>
             <h3>{content.formTitle}</h3>
@@ -231,57 +396,68 @@ export function ContactSection() {
 
           <div className="contact-form-grid">
             <label>
-              {content.labels.travelDate}
+              {labels.travelDate}
               <input
                 type="text"
                 name="travelDate"
-                placeholder={content.labels.travelDatePlaceholder}
+                placeholder={labels.travelDatePlaceholder}
                 required
               />
             </label>
             <label>
-              {content.labels.guests}
-              <input type="text" name="guests" placeholder={content.labels.guestsPlaceholder} required />
+              {labels.guests}
+              <input type="text" name="guests" placeholder={labels.guestsPlaceholder} required />
             </label>
             <label>
-              {content.labels.tripType}
+              {labels.tripType}
               <select name="tripType" defaultValue="" required>
                 <option value="" disabled>
-                  {content.labels.selectPlaceholder}
+                  {labels.selectPlaceholder}
                 </option>
-                {content.labels.tripTypes.map((type) => (
+                {labels.tripTypes.map((type) => (
                   <option key={type}>{type}</option>
                 ))}
               </select>
             </label>
             <label>
-              {content.labels.budget}
-              <input type="text" name="budget" placeholder={content.labels.budgetPlaceholder} />
+              {labels.budget}
+              <input type="text" name="budget" placeholder={labels.budgetPlaceholder} />
+            </label>
+            <label>
+              {labels.standard}
+              <select name="standard" defaultValue="" required>
+                <option value="" disabled>
+                  {labels.standardPlaceholder}
+                </option>
+                {labels.standards.map((item) => (
+                  <option key={item}>{item}</option>
+                ))}
+              </select>
             </label>
             <label className="contact-field-wide">
-              {content.labels.expectations}
+              {labels.expectations}
               <textarea
                 name="expectations"
                 rows={4}
-                placeholder={content.labels.expectationsPlaceholder}
+                placeholder={labels.expectationsPlaceholder}
                 required
               />
             </label>
             <label className="contact-field-wide">
-              {content.labels.priorities}
+              {labels.priorities}
               <textarea
                 name="priorities"
                 rows={4}
-                placeholder={content.labels.prioritiesPlaceholder}
+                placeholder={labels.prioritiesPlaceholder}
                 required
               />
             </label>
             <label className="contact-field-wide">
-              {content.labels.contact}
+              {labels.contact}
               <input
                 type="text"
                 name="contact"
-                placeholder={content.labels.contactPlaceholder}
+                placeholder={labels.contactPlaceholder}
                 required
               />
             </label>
@@ -289,10 +465,21 @@ export function ContactSection() {
 
           <div className="contact-submit-row">
             <p>{statusMessage}</p>
-            <button type="submit" className="button button-primary button-submit">
+            <button type="submit" className="button button-primary button-submit" disabled={isSubmitting}>
               {content.submit}
             </button>
           </div>
+          {bookingUrl ? (
+            <div className="contact-status-actions">
+              <a
+                className="button button-secondary"
+                href={bookingUrl}
+                data-track="cta_booking_redirect"
+              >
+                {content.bookingCta}
+              </a>
+            </div>
+          ) : null}
         </form>
       </div>
     </section>

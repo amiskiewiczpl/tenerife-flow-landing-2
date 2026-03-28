@@ -1,3 +1,4 @@
+import { ResponsiveImage } from '../components/ResponsiveImage'
 import { Footer } from '../sections/Footer'
 import { Header } from '../sections/Header'
 import { getLocale, withLocale } from '../locale'
@@ -106,7 +107,13 @@ export function ArticlesPage() {
         <section className="section articles-page">
           <div className="container articles-featured">
             <div className="articles-featured-media">
-              <img src={`${baseUrl}images/${featuredImage}`} alt={featuredTitle} />
+              <ResponsiveImage
+                src={`${baseUrl}images/${featuredImage}`}
+                alt={featuredTitle}
+                loading="lazy"
+                sizes="(max-width: 979px) 100vw, 46vw"
+                objectPosition="center center"
+              />
             </div>
             <div className="articles-featured-copy">
               <span className="curated-tag">{featuredCategory}</span>
@@ -135,7 +142,13 @@ export function ArticlesPage() {
             {content.articles.map(([title, excerpt, category, readTime, image]) => (
               <article className="article-card" key={title}>
                 <div className="article-card-media">
-                  <img src={`${baseUrl}images/${image}`} alt={title} />
+                  <ResponsiveImage
+                    src={`${baseUrl}images/${image}`}
+                    alt={title}
+                    loading="lazy"
+                    sizes="(max-width: 719px) 100vw, (max-width: 1279px) 50vw, 33vw"
+                    objectPosition="center center"
+                  />
                 </div>
                 <div className="article-card-copy">
                   <span className="curated-tag">{category}</span>
